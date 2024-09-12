@@ -1,25 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
 
 function App() {
+  const [country, setCountry] = useState([]);
+  const countries: any = ["India", "Russia", "China", "Rome"];
+  const lookUpCountry = (e: any) => {
+    const result = countries.filter((item: any) =>
+      item.toLowerCase().startsWith(e.target.value.toLowerCase())
+    );
+
+    setCountry(result);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <input type="text" onChange={lookUpCountry} />
+      <label htmlFor="">{country.join(", ")}</label>
+    </>
   );
 }
 
